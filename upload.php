@@ -97,7 +97,7 @@ function findAndChangeTexturesPath($object) {
         if (strcmp($key, "textures") == 0) {
             // on change le chemin pour correspondre à l'emplacement sur le serveur web
             $fileName = strrchr($property[0]->file, '/');
-            $newPath = "models/textures" . $fileName;
+            $newPath = "textures" . $fileName;
             $property[0]->file = $newPath;
         } else {
             // si le noeud à parser contient des enfants ont les parse
