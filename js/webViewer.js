@@ -13,7 +13,11 @@ jQuery("document").ready(function($) {
     
     $("#colorSelect").ColorPicker({
         flat: true,
-        color: {r:76, g:76, b:76},
+        color: {
+            r:76, 
+            g:76, 
+            b:76
+        },
         livePreview: false,
         onSubmit: function(hsb, hex, rgb){
             viewer.view.setClearColor([rgb.r/255, rgb.g/255, rgb.b/255, 1.0]);
@@ -26,10 +30,10 @@ jQuery("document").ready(function($) {
             case "om":
                 viewer.setupManipulator();
                 break;
-                case "fpm":
-                    viewer.setupManipulator(new osgGA.FirstPersonManipulator());
-                    viewer.getManipulator().computeHomePosition();
-                    break;
+            case "fpm":
+                viewer.setupManipulator(new osgGA.FirstPersonManipulator());
+                viewer.getManipulator().computeHomePosition();
+                break;
                 
         }
     });
@@ -95,7 +99,7 @@ function populateSelect(){
     });
 }
     
-    function initViewer(){
+function initViewer(){
     console.log("doc ready");
     var size = getWindowSize();
 
@@ -110,7 +114,7 @@ function populateSelect(){
     });
     viewer.init();
     viewer.view.setClearColor([0.3, 0.3, 0.3, 1.0]);
-    }
+}
    
 function getWindowSize() {
     var myWidth = 0, myHeight = 0;

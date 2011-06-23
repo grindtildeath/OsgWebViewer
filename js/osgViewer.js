@@ -36,9 +36,18 @@ osgViewer.Viewer = function(canvas, options) {
         this.urlOptions = true;
 
         this.mouseWheelEventNode = canvas;
-        this.eventNode = document;
-        if (options && options.mouseWheelEventNode) {
-            this.mouseWheelEventNode = options.mouseWheelEventNode;
+        this.mouseEventNode = canvas;
+        this.keyboardEventNode = document;
+        if (options) {
+            if(options.mouseWheelEventNode){
+                this.mouseWheelEventNode = options.mouseWheelEventNode;
+            }
+            if(options.mouseEventNode){
+                this.mouseEventNode = options.mouseEventNode;
+            }
+            if(options.mouseWheelEventNode){
+                this.keyboardEventNode = options.keyboardEventNode;
+            }            
         }
 
     } else {
@@ -402,7 +411,7 @@ osgViewer.Viewer.prototype = {
             this.canvas.addEventListener("MozTouchUp", touchUp, false);
             this.canvas.addEventListener("MozTouchMove", touchMove, false);
 
-            jQuery(this.eventNode).bind( {
+            jQuery(this.mouseEventNode).bind( {
                 mousedown: function(ev) {
                     if (disableMouse === false) {
                         return manipulator.mousedown(ev);
@@ -442,12 +451,12 @@ osgViewer.Viewer.prototype = {
             }
             
             if (manipulator.keydown !== undefined) {
-                jQuery(this.eventNode).bind({'keydown': function(event) {
+                jQuery(this.keyboardEventNode).bind({'keydown': function(event) {
                     return manipulator.keydown(event);
                 }});
             }
             if (manipulator.keyup !== undefined) {
-                jQuery(this.eventNode).bind({'keyup': function(event) {
+                jQuery(this.keyboardEventNode).bind({'keyup': function(event) {
                     return manipulator.keyup(event);
                 }});
             }
