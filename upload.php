@@ -27,7 +27,7 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
         $open = $zip->open($_FILES['osgjsFile']['tmp_name']);
         //die($_FILES['osgjsFile']['tmp_name']);
         if ($open === TRUE) {
-
+            $modelFile;
             // var_dump($zip);
             for ($i = 0; $i < $zip->numFiles; $i++) {
                 $zipFile = $zip->getFromIndex($i);
@@ -38,6 +38,7 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
                 switch ($fileExtension) {
                     case '.osgjs':
                     case '.json':
+                        $modelFile = substr($fileName,1);
                         $newFile = json_decode($zipFile);
                         $newFile = replaceTexturesPath($newFile);
                         $newFile = json_encode($newFile);
@@ -46,6 +47,7 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
                         break;
                     case '.jpg':
                     case '.png':
+                        case '.bmp':
                         moveToFolder($zipFile, $fileName, $dossierTextures);
                         break;
                 }
@@ -54,9 +56,10 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
                 //echo "index : $i\n";
                 //print_r($zip->statIndex($i));
             }
+            header("location: index.html?modelFile=" . $modelFile);
             //$zip->extractTo("temp/");
-            $zip->close();
-            header("location: index.html?modelFile=objects%2f" . $fichier);
+            
+            
         } else {
             die('échec' . $open);
         }
