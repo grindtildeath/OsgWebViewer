@@ -19,6 +19,20 @@ jQuery("document").ready(function($) {
             viewer.view.setClearColor([rgb.r/255, rgb.g/255, rgb.b/255, 1.0]);
         }
     });
+    
+    $("option").click(function(){
+        var value = $(this).attr("value");
+        switch(value){
+            case "om":
+                viewer.setupManipulator();
+                break;
+                case "fpm":
+                    viewer.setupManipulator(new osgGA.FirstPersonManipulator());
+                    viewer.getManipulator().computeHomePosition();
+                    break;
+                
+        }
+    });
    
     modelFile = $(document).getUrlParam("modelFile");
     
@@ -44,9 +58,9 @@ function loadModel(file){
                 console.log("get null trying to load " + file);
             } else {
                 
-                console.log("loaded " + file);
+                
                 scene = osgDB.parseSceneGraph(json);
-                console.log("scene parsed");
+                console.log("scene parsed : " + scene);
                 
                 if(!scene){
                     return undefined;
@@ -62,10 +76,15 @@ function loadModel(file){
     });
 }
 function initScene(scene){
+    console.log("ok");
     viewer.setScene(scene);
+    jQuery("select").find("option:first").attr("selected", "selected").parent("select");
     viewer.setupManipulator();
     viewer.run();
+    console.log("run ok ");
 }
+
+
 
 function populateSelect(){
     

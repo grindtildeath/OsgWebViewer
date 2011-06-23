@@ -1,9 +1,11 @@
+
+                    
 <div>
             <h2>Types de fichiers acceptés</h2>
             <ul>
-                <li>*.osgjs<p>Extension spécifique aux modèles OpenSceneGraph pour JavaScript</p></li>
-                <li>*.json<p>Fichiers json pour la rétrocompatibilité avec les fichiers *.osgjs</p></li>
-                <li>*.zip<p>Archives zip pouvant contenir à la fois modèles et textures.</p>
-                    <p style="font-weight: bold;">Attention les liens vers les textures des modèles doivent pointer vers "models/" puis vers le chemin de la texture.</p></li>
+                <li>Modèles (*.json, *.osgjs, *.js)<p>Extensions spécifiques aux modèles OpenSceneGraph pour JavaScript</p></li>
+                <li>Textures (*.jpg, *.png, *.bmp)<p>Extensions compatibles avec WebGL</p></li>
+                <li>Archives (*.zip)<p>Archives zip pouvant contenir à la fois modèles et textures.</p>
+                <li><p style="font-weight: bold;">Attention le temps nécessaire à la transmission du fichier sur le serveur peut s'avérer long en fonction de la taille du fichier envoyé !</p></li>
             </ul>
         </div>

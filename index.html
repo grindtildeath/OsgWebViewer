@@ -33,7 +33,7 @@
                     <li>
                         <form enctype="multipart/form-data" method="post" action="upload.php">
                             <p>Ouvrir un fichier modèle : <a href="fichiers.txt" id="fancybox" ><img src="img/dialog-information.png" alt="info"></img></a></p>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
                             <input id="osgjsFile" type="file" name="osgjsFile" />
                             <input id="submit" type="submit" value="Envoyer" />
                         </form>
@@ -41,6 +41,13 @@
                     <li>
                         <p>Choisir un fichier sur le serveur :</p>
                         <div id="fileSelector"></div>
+                    </li>
+                    <li>
+                        <p>Choisir le mode de vue :</p>
+                        <select>
+                            <option value="om">OrbitManipulator</option>
+                            <option value="fpm">FirstPersonManipulator</option>
+                        </select>
                     </li>
                     <li>
                         <p>Changer la couleur de fond :</p>
