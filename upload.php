@@ -38,6 +38,7 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
                 switch ($fileExtension) {
                     case '.osgjs':
                     case '.json':
+                        case '.js':
                         $modelFile = substr($fileName,1);
                         $newFile = json_decode($zipFile);
                         $newFile = replaceTexturesPath($newFile);
@@ -56,7 +57,12 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
                 //echo "index : $i\n";
                 //print_r($zip->statIndex($i));
             }
-            header("location: index.html?modelFile=" . $modelFile);
+            if($modelFile){
+                header("location: index.html?modelFile=" . $modelFile);
+            } else {
+                die('échec' . var_dump($modelFile));
+            }
+            
             //$zip->extractTo("temp/");
             
             

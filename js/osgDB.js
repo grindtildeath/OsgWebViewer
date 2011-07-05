@@ -83,6 +83,11 @@ osgDB.parseSceneGraph = function (node)
             jQuery.extend(newmaterial, material);
             newstateset.setAttributeAndMode(newmaterial);
         }
+        if (node.stateset.blendfunc) {
+            var blendfunc = node.stateset.blendfunc;
+            var newblendfunc = new osg.BlendFunc(blendfunc.source, blendfunc.destination);
+            newstateset.setAttributeAndMode(newblendfunc);
+        }
         node.stateset = newstateset;
     }
 

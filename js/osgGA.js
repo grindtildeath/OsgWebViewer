@@ -321,6 +321,7 @@ osgGA.FirstPersonManipulator.prototype = {
         this.velocity = 5.0;
         this.acceleration = 0.0;
         this.maxVelocity = 40.0;
+        this.minVelocity = 1.0;
         this.buttonup = true;
     },
     reset: function()
@@ -404,6 +405,14 @@ osgGA.FirstPersonManipulator.prototype = {
     {
         return this.maxVelocity;
     },
+    setMinVelocity: function(vel)
+    {
+        this.minVelocity = vel;
+    },
+    getMinVelocity: function()
+    {
+        return this.minVelocity;
+    },
     computeRotation: function(dx, dy)
     {
         this.angleVertical += dy*0.01;
@@ -473,6 +482,20 @@ osgGA.FirstPersonManipulator.prototype = {
         else if (event.keyCode == 65){ // A
             this.moveRight(-this.velocity);
             return false;
+        }
+    },
+    computeVelocity: function(){
+        if (this.node) {
+            var bs = this.node.getBound();
+            var coeff = bs.radius() / 30;
+            if(coeff < 5){
+                this.setVelocity(5);
+            } else if (coeff > 40){
+                this.setVelocity(40);
+            } else {
+                this.setVelocity(parseInt(coeff));
+            }
+            
         }
     }
 };

@@ -14,9 +14,9 @@ jQuery("document").ready(function($) {
     $("#colorSelect").ColorPicker({
         flat: true,
         color: {
-            r:76, 
-            g:76, 
-            b:76
+            r:153, 
+            g:229.5, 
+            b:255
         },
         livePreview: false,
         onSubmit: function(hsb, hex, rgb){
@@ -24,15 +24,23 @@ jQuery("document").ready(function($) {
         }
     });
     
-    $("option").click(function(){
-        var value = $(this).attr("value");
+    $("select").change(function(){
+        
+        var value = $("option:selected", $(this)).attr("value");
+        console.log("option" + value);
         switch(value){
             case "om":
                 viewer.setupManipulator();
+                inactiveVelocityControl();
+                viewer.getManipulator().computeHomePosition();
                 break;
             case "fpm":
-                viewer.setupManipulator(new osgGA.FirstPersonManipulator());
-                viewer.getManipulator().computeHomePosition();
+                console.log("fpm");
+                var fpm = new osgGA.FirstPersonManipulator();
+                viewer.setupManipulator(fpm);
+                fpm.computeHomePosition();
+                fpm.computeVelocity();
+                activeVelocityControl(fpm);
                 break;
                 
         }
@@ -52,6 +60,31 @@ jQuery("document").ready(function($) {
                 
 });
 
+function inactiveVelocityControl(){
+    jQuery("#minusVelocity").unbind("click");
+    jQuery("#plusVelocity").unbind("click");
+    jQuery("#velocityControl").attr("class", "inactive");
+}
+
+function activeVelocityControl(fpm){
+    console.log("active fpm");
+
+    jQuery("#velocity").html(fpm.getVelocity());
+    jQuery("#velocityControl").attr("class", "");
+    jQuery("#minusVelocity").click(function(){
+        if(fpm.getMinVelocity() < fpm.getVelocity()){
+            fpm.setVelocity(fpm.getVelocity()-1);
+        }
+        jQuery("#velocity").html(fpm.getVelocity());
+    });
+    jQuery("#plusVelocity").click(function(){
+        if(fpm.getMaxVelocity() > fpm.getVelocity()){
+            fpm.setVelocity(fpm.getVelocity()+1);
+        }
+        jQuery("#velocity").html(fpm.getVelocity());
+    });
+}
+
 function loadModel(file){
     jQuery.ajax({
         url: file,  
@@ -61,16 +94,26 @@ function loadModel(file){
             if(json == null){
                 console.log("get null trying to load " + file);
             } else {
-                
+                console.log("succes loading file " + file);
                 
                 scene = osgDB.parseSceneGraph(json);
                 console.log("scene parsed : " + scene);
                 
-                if(!scene){
-                    return undefined;
-                }
-                
-                console.log(scene);
+//                if(!scene){
+//                    return undefined;
+//                } else if (file == "models/veget_5_W.osgjs"){
+//                     blendFunc = new osg.BlendFunc("SRC_ALPHA", "ONE_MINUS_SRC_ALPHA");   
+//                    console.log("scene.getStateSet() " + scene.getStateSet());
+//                    g200 = getNodeFromName(scene, "g200");
+//                    console.log("g200 + " + g200);
+//                    children = g200.getChildren();
+//                    if(children.length > 0){
+//                        for(var i = 0 ; i < children.length ; i++){
+//                            state = children[i].getStateSet();
+//                            state.setAttributeAndMode(blendFunc)
+//                        }
+//                    }
+//                }
                 
                 initScene(scene);
                 
@@ -80,12 +123,14 @@ function loadModel(file){
     });
 }
 function initScene(scene){
-    console.log("ok");
+    
     viewer.setScene(scene);
     jQuery("select").find("option:first").attr("selected", "selected").parent("select");
+    inactiveVelocityControl();
     viewer.setupManipulator();
+    viewer.getManipulator().computeHomePosition();
     viewer.run();
-    console.log("run ok ");
+    
 }
 
 
@@ -109,11 +154,10 @@ function initViewer(){
     canvas.height = size.h;
     
     viewer = new osgViewer.Viewer(canvas, {
-        antialias : true, 
-        alpha: false
+        antialias : true
     });
     viewer.init();
-    viewer.view.setClearColor([0.3, 0.3, 0.3, 1.0]);
+    viewer.view.setClearColor([0.6, 0.9, 1.0, 1.0]);
 }
    
 function getWindowSize() {
