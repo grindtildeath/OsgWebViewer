@@ -1,2 +1,10 @@
 This Project is a Webpage to share and view .osgjs models with the ability to upload and browse models on the server.
-It's written in JavaScript/PHP/WebGl using jQuery and needs a web server.
+It's written in JavaScript/PHP/WebGl using jQuery.
+
+Required
+- A HTTP webserver as Apache with PHP 5.3. 
+
+INSTALLATION
+- Unzip files on your web server.
+
+Check installation.txt in french for details. (No translation yet sorry)

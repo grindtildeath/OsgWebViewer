@@ -1,0 +1,9 @@
+
+                    
+<div>
+            <h2>Manipulateurs</h2>
+            <ul>
+                <li>Orbite<p>Le manipulateur Orbite permet de déplacer la caméra autour d'une scène. Celle-ci est toujours dirigée vers le centre de la scène. </p><p>Tous les contrôles se font à l'aide de la souris.</p></li>
+                <li>Première personne<p>Le manipulateur Première Personne permet de déplacer la caméra à l'intérieur d'une scène.</p><p>La souris permet de changer de direction. Les contrôles claviers sont les suivant : 'W'/'S' pour avancer/reculer et 'A'/'D' pour se déplacer latéralement</p></li>
+            </ul>
+        </div>

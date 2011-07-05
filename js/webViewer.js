@@ -9,7 +9,8 @@ jQuery("document").ready(function($) {
 
     populateSelect();
     
-    $("#fancybox").fancybox();
+    $("#fichiers").fancybox();
+    $("#manipulateurs").fancybox();
     
     $("#colorSelect").ColorPicker({
         flat: true,
