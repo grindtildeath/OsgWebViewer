@@ -6,16 +6,12 @@ ini_set('display_errors', 1);
 $dossierModels = 'models/';
 $dossierTextures = 'textures/';
 $fichier = basename($_FILES['osgjsFile']['name']);
-$taille_maxi = 10000000;
-$taille = filesize($_FILES['osgjsFile']['tmp_name']);
+//$taille = filesize($_FILES['osgjsFile']['tmp_name']);
 $extensions = array('.json', '.osgjs', '.zip');
 $extension = strrchr($_FILES['osgjsFile']['name'], '.');
 //Début des vérifications de sécurité...
 if (!in_array($extension, $extensions)) { //Si l'extension n'est pas dans le tableau
     $erreur = 'Vous devez uploader un fichier de type .json, .osgjs ou .zip...';
-}
-if ($taille > $taille_maxi) {
-    $erreur = 'Le fichier est trop gros...';
 }
 if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
     //On formate le nom du fichier ici...

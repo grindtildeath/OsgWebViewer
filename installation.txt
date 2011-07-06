@@ -17,11 +17,11 @@ Pour une installation en local :
 
 4. Configurer PHP.ini en modifiant les paramètres suivants :
 
-	• upload_max_filesize = 10M
+	• upload_max_filesize = 20M
 	  Ceci est la taille maximum d’un fichier uploadé.
 	• memory_limit = 512M
 	  Ceci est la limite de mémoire en bits qu’un script est autorisé à utiliser.
-	• post_max_size = 16M
+	• post_max_size = 32M
 	  Ceci est la limite de taille des données encapsulées dans une requête POST.
 
 5. Redémarrer PHP afin de prendre en compte les modifications apportées à PHP.ini.
@@ -41,11 +41,11 @@ Pour une installation sur un serveur internet :
 
 3. Configurer PHP.ini en modifiant les paramètres suivants :
 
-	• upload_max_filesize = 10M
+	• upload_max_filesize = 20M
 	  Ceci est la taille maximum d’un fichier uploadé.
 	• memory_limit = 512M
 	  Ceci est la limite de mémoire en bits qu’un script est autorisé à utiliser.
-	• post_max_size = 16M
+	• post_max_size = 32M
 	  Ceci est la limite de taille des données encapsulées dans une requête POST.
 
 4. Redémarrer PHP afin de prendre en compte les modifications apportées à PHP.ini.
