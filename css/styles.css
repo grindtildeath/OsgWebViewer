@@ -11,6 +11,10 @@ body {
   a:active {text-decoration: none; color: grey}
   a:hover {text-decoration: underline;  color: grey}
 
+  .inactive{
+      display: none;
+  }
+  
   #container{
       overflow: auto;
   }
@@ -62,6 +66,8 @@ body {
           
   }
   
-
-  
+  #velocityControl > *{
+      display: inline;
+      margin: 5px;
+  }
   
