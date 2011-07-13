@@ -1,53 +1,52 @@
-Guide d’installation d’OSGWebViewer
-===================================
-OSGWebViewer est une application web permettant de visualiser et de partager des modèles osgjs.
-
-Pour une installation en local :
-1. Télécharger et installer un serveur web HTTP avec PHP 5.3 tel que :
-
-	Zend Server : http://www.zend.com/fr/products/server/
-
-	Zend Server possède l’avantage d’être cross-platform et son installation ne comprend pas de base de données inutile pour une application telle que OSGWebViewer.
-
-	Il est également possible d’utiliser une version d’Apache HTTP Server et d’y ajouter PHP 5.3 ensuite, ou une solution intégrée telle que WAMP, MAMP ou LAMP.
+GUIDE D’INSTALLATION D’OSGWEBVIEWER
+OSGWebViewer est une application web permettant de visualiser et de partager des modèles osgjs. Elle est Open source et disponible sur la plateforme collaborative « github » pour permettre une réutilisation par la communauté du logiciel libre. Le code source est disponible à l’adresse suivante :
+https://github.com/grindtildeath/OsgWebViewer
+POUR UNE INSTALLATION EN LOCAL :
+1. Télécharger et installer un serveur web HTTP avec PHP 5.3 tel que :
+Zend Server : http://www.zend.com/fr/products/server/
+Zend Server possède l’avantage d’être cross-platform et son installation ne comprend pas de base de données inutile pour une application telle que OSGWebViewer.
+Il est également possible d’utiliser une version d’Apache HTTP Server et d’y ajouter PHP 5.3 ensuite, ou une solution intégrée telle que WAMP, MAMP ou LAMP.
 
 2. Une fois le serveur web installé, décompresser le contenu de l’archive OSGWebViewer.zip sur le CD-ROM à la racine de votre serveur web (dossier htdocs ou www).
 
-3. Vérifiez que PHP puisse avoir un accès en écriture sur les dossiers « /modeles » et « /textures ».
+3. Vérifiez que PHP puisse avoir un accès en écriture sur les dossiers « /modeles » et « /textures ».
+	
+4. Configurer PHP.ini en modifiant les paramètres suivants :
 
-4. Configurer PHP.ini en modifiant les paramètres suivants :
+* upload_max_filesize = 10M
+Ceci est la taille maximum d’un fichier uploadé.
+* memory_limit = 512M
+Ceci est la limite de mémoire en bits qu’un script est autorisé à utiliser.
+* post_max_size = 16M
+Ceci est la limite de taille des données encapsulées dans une requête POST.
 
-	• upload_max_filesize = 20M
-	  Ceci est la taille maximum d’un fichier uploadé.
-	• memory_limit = 512M
-	  Ceci est la limite de mémoire en bits qu’un script est autorisé à utiliser.
-	• post_max_size = 32M
-	  Ceci est la limite de taille des données encapsulées dans une requête POST.
+NB : il est possible d’utiliser des valeurs supérieures à celles indiquées. Attention à la valeur de memory_limit si plusieurs sites sont hébergés sur le même serveur avec des scripts qui peuvent consommer de la mémoire en même temps.
 
 5. Redémarrer PHP afin de prendre en compte les modifications apportées à PHP.ini.
 
-6. Accéder à l’application à l’adresse : 
-
-	• http://localhost/OSGWebViewer/ ou http://127.0.0.1/OSGWebViewer/
-
+6. Accéder à l’application à l’adresse : 
+* http://localhost/OSGWebViewer/ ou http://127.0.0.1/OSGWebViewer/
 
 
-Pour une installation sur un serveur internet :
-===============================================
-
+POUR UNE INSTALLATION SUR UN SERVEUR INTERNET :
 1. Décompresser le contenu de l’archive OSGWebViewer.zip sur le CD-ROM à la racine de votre serveur web.
 
-2. Modifier le CHMOD des dossiers « /modeles » et « /textures » à 777.
+2. Vérifiez que PHP puisse avoir un accès en écriture en modifiant le CHMOD des dossiers « /modeles » et « /textures » à 777.
 
-3. Configurer PHP.ini en modifiant les paramètres suivants :
+3. Créer un fichier .htaccess afin de modifier les valeurs de PHP.ini en modifiant les paramètres suivants :
 
-	• upload_max_filesize = 20M
-	  Ceci est la taille maximum d’un fichier uploadé.
-	• memory_limit = 512M
-	  Ceci est la limite de mémoire en bits qu’un script est autorisé à utiliser.
-	• post_max_size = 32M
-	  Ceci est la limite de taille des données encapsulées dans une requête POST.
+* Php_value upload_max_filesize 10M
+Ceci est la taille maximum d’un fichier uploadé.
+* Php_value memory_limit 512M
+Ceci est la limite de mémoire en bits qu’un script est autorisé à utiliser.
+* post_max_size 16M
+Ceci est la limite de taille des données encapsulées dans une requête POST.
+
+NB : il est possible d’utiliser des valeurs supérieures à celles indiquées. 
+
+Remarque : Certains hébergeurs limitent la valeur de memory_limit afin d’empêcher un script mal écrit de consommer trop de mémoire sur un serveur. S’il est impossible de modifier cette valeur, alors il faut envoyer le modèle par FTP et modifier à la main le lien vers les fichiers de textures.
 
 4. Redémarrer PHP afin de prendre en compte les modifications apportées à PHP.ini.
 
-5. Accéder à l’application à l’adresse : http://www.votrenomdedomaine/OSGWebViewer/
+5. Accéder à l’application à l’adresse : http://www.votrenomdedomaine/OSGWebViewer/
+

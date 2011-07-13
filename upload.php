@@ -34,17 +34,17 @@ if (!isset($erreur)) { //S'il n'y a pas d'erreur, on upload
                 switch ($fileExtension) {
                     case '.osgjs':
                     case '.json':
-                        case '.js':
+                    case '.js':
                         $modelFile = substr($fileName,1);
-                        $newFile = json_decode($zipFile);
-                        $newFile = replaceTexturesPath($newFile);
-                        $newFile = json_encode($newFile);
-                        $newFile = str_replace("\\", "", $newFile);
-                        moveToFolder($newFile, $fileName, $dossierModels);
+                        $zipFile = json_decode($zipFile);
+                        $zipFile = replaceTexturesPath($zipFile);
+                        $zipFile = json_encode($zipFile);
+                        $zipFile = str_replace("\\", "", $zipFile);
+                        moveToFolder($zipFile, $fileName, $dossierModels);
                         break;
                     case '.jpg':
                     case '.png':
-                        case '.bmp':
+                    case '.bmp':
                         moveToFolder($zipFile, $fileName, $dossierTextures);
                         break;
                 }
